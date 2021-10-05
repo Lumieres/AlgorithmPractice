@@ -12,6 +12,6 @@ int main(){
         cout << "<" << endl;
     }
     else{
-        cout << "=" << endl;
+        cout << "==" << endl;
     }
 }
