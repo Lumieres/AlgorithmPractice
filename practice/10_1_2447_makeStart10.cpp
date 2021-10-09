@@ -1,17 +1,72 @@
-#include <iostream>
-#include <cmath>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-using namespace std;
-char arrays[10001][10001] = {};
+const int STAR_SIZE = 3;
 
-void makeStar(int length, int x, int y){
-    for(int i = x; i < length; i++){
-        for(int j = y; j < length; j++){
-            arrays[i][j] = '*';
-        }
+typedef struct STAR{
+    int size;
+    char** square;
+} STAR;
+
+void printStar(STAR *star, int starSize){
+    for(int i=0; i<starSize;i++){
+        printf("%s\n",star->square[i]);
     }
 }
 
+void initStar(STAR *star, int size){
+    star->size = size;    
+    star->square = (char**) malloc(sizeof(char*) * size);
+    for(int i=0; i<size; i++){
+        star->square[i] = (char*) malloc(sizeof(char) * size);
+    }
+    if(size ==1) **star->square = '*';
+}
+
+void freeStar(STAR *star){
+    free(star->square);
+    free(star);
+}
+
+STAR* makeStar(STAR *star, int targetSize){
+
+    if(targetSize ==1){
+        initStar(star, 1);
+        return star;
+    }
+
+    STAR *nextStar = (STAR*) malloc(sizeof(struct STAR));
+    initStar(nextStar,star->size*STAR_SIZE);
+    char** square = nextStar->square;
+
+    for(int i=0; i<targetSize; i++){
+        for(int j=0; j<STAR_SIZE; j++){
+            if((targetSize/STAR_SIZE) <= i && i < (targetSize/STAR_SIZE*2) && j == 1){
+                memset((square[i] + sizeof(char)*(j*(targetSize/STAR_SIZE))), ' ', targetSize/STAR_SIZE);
+            }
+            else{
+                memcpy((square[i] + sizeof(char)*(j*(targetSize/3))), star->square[i%(targetSize/3)], targetSize/3);
+            }
+        }
+    }
+    freeStar(star);
+    return nextStar;
+}
+
 int main(){
-    cout << (int)(3/2) << endl;
+    int N;
+    int targetSize = 1;
+    scanf("%d", &N);
+
+    STAR *star = (STAR*) malloc(sizeof(struct STAR)); 
+
+    while(targetSize <= N){
+        star = makeStar(star, targetSize);
+        targetSize *= STAR_SIZE;
+    }
+
+    printStar(star, star->size);
+    freeStar(star);
+    return 0;
 }
