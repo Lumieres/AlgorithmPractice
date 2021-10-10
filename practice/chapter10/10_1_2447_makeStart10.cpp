@@ -9,6 +9,28 @@ typedef struct STAR{
     char** square;
 } STAR;
 
+void printStar(STAR *star, int starSize);
+void initStar(STAR *star, int size);
+void freeStar(STAR *star);
+STAR* makeStar(STAR *star, int targetSize);
+
+int main(){
+    int N;
+    int targetSize = 1;
+    scanf("%d", &N);
+
+    STAR *star = (STAR*) malloc(sizeof(struct STAR)); 
+
+    while(targetSize <= N){
+        star = makeStar(star, targetSize);
+        targetSize *= STAR_SIZE;
+    }
+
+    printStar(star, star->size);
+    freeStar(star);
+    return 0;
+}
+
 void printStar(STAR *star, int starSize){
     for(int i=0; i<starSize;i++){
         printf("%s\n",star->square[i]);
@@ -54,19 +76,3 @@ STAR* makeStar(STAR *star, int targetSize){
     return nextStar;
 }
 
-int main(){
-    int N;
-    int targetSize = 1;
-    scanf("%d", &N);
-
-    STAR *star = (STAR*) malloc(sizeof(struct STAR)); 
-
-    while(targetSize <= N){
-        star = makeStar(star, targetSize);
-        targetSize *= STAR_SIZE;
-    }
-
-    printStar(star, star->size);
-    freeStar(star);
-    return 0;
-}
