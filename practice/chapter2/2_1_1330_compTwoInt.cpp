@@ -2,16 +2,12 @@
 
 using namespace std;
 
-int main(){
-    int a, b;
-    cin >> a >> b; 
-    if(a>b){
-        cout << ">" << endl;
-    }
-    else if(a<b){
-        cout << "<" << endl;
-    }
-    else{
-        cout << "==" << endl;
-    }
+int main(void){
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int A,B;
+	cin >> A >> B;
+	if(A<B) cout << "<" << "\n";
+	else if(A>B) cout << ">" << "\n";
+	else cout << "==" << "\n";
 }
