@@ -1,8 +1,0 @@
-M#10_1_2447_makeStart10.cpp#	#10_1_2447_makeStart10.cpp#	/^int main(){$/
-M10_1_2447_makeStart10.cpp	10_1_2447_makeStart10.cpp	/^int main(){$/
-Mtags	tags	/^M10_1_2447_makeStart10.cpp	10_1_2447_makeStart10.c/
-STAR	#10_1_2447_makeStart10.cpp#	/^} STAR;$/
-freeStar	#10_1_2447_makeStart10.cpp#	/^void freeStar(STAR *star){$/
-initStar	#10_1_2447_makeStart10.cpp#	/^void initStar(STAR *star, int size){$/
-makeStar	#10_1_2447_makeStart10.cpp#	/^STAR* makeStar(STAR *star, int targetSize){$/
-printStar	#10_1_2447_makeStart10.cpp#	/^void printStar(STAR *star, int starSize){$/
