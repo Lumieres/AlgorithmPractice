@@ -1,6 +1,6 @@
-#include <iostream>
-
 using namespace std;
+
+#include <iostream>
 
 int T,N;
 int output;
@@ -23,6 +23,7 @@ int fibonacci(int n) {
 	}
 	
 }
+
 int main(void) {
 	ios_base:: sync_with_stdio(0);
 	cin.tie(0);
